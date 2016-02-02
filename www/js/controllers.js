@@ -1,6 +1,4 @@
-angular.module('starter.controllers', [])
-
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+angular.module('MyLocationsApp').controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -39,9 +37,10 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-})
+});
 
-.controller('PlaylistsCtrl', function($scope) {
+angular.module('MyLocationsApp').controller('LocationsCtrl', function($scope) {
+  console.log('sdf')
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -50,7 +49,46 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
-})
+});
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+angular.module('MyLocationsApp').controller('HomepageCtrl', function($scope) {
+    var map = null;
+    var defaultMapLocation ={
+      lat: 18.5203,
+      lng: 73.8567
+    };
+    var styles = [
+      {
+        stylers: [
+          { hue: "#00ffe6" },
+          { saturation: -20 }
+        ]
+      },{
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [
+          { lightness: 100 },
+          { visibility: "simplified" }
+        ]
+      },{
+        featureType: "road",
+        elementType: "labels",
+        stylers: [
+          { visibility: "on" }
+        ]
+      }
+    ];
+
+    $scope.initHomepage = function() {
+      map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultMapLocation,
+                scrollwheel: false,
+                disableDefaultUI: true,
+                zoom: 8
+              });
+              map.setOptions({styles: styles});
+    };
+});
+
+angular.module('MyLocationsApp').controller('PlaylistCtrl', function($scope, $stateParams) {
 });

@@ -3,10 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','ionic-native-transitions'])
+angular.module('MyLocationsApp', ['ionic','ionic-native-transitions'])
 
-.config(function($ionicNativeTransitionsProvider){
+angular.module('MyLocationsApp').config(function($ionicNativeTransitionsProvider){
     $ionicNativeTransitionsProvider.setDefaultOptions({
         duration: 400, // in milliseconds (ms), default 400,
         slowdownfactor: 4, // overlap views (higher number is more) or no overlap (1), default 4
@@ -18,23 +17,23 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-native-transiti
         triggerTransitionEvent: '$ionicView.afterEnter', // internal ionic-native-transitions option
         backInOppositeDirection: false // Takes over default back transition and state back transition to use the opposite direction transition to go back
     });
-})
+});
 
-.config(function($ionicNativeTransitionsProvider){
+angular.module('MyLocationsApp').config(function($ionicNativeTransitionsProvider){
     $ionicNativeTransitionsProvider.setDefaultTransition({
         type: 'slide',
         direction: 'left'
     });
-})
+});
 
-.config(function($ionicNativeTransitionsProvider){
+angular.module('MyLocationsApp').config(function($ionicNativeTransitionsProvider){
     $ionicNativeTransitionsProvider.setDefaultBackTransition({
         type: 'slide',
         direction: 'right'
     });
-})
+});
 
-.run(function($ionicPlatform) {
+angular.module('MyLocationsApp').run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -48,9 +47,9 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-native-transiti
       StatusBar.styleDefault();
     }
   });
-})
+});
 
-.config(function($stateProvider, $urlRouterProvider) {
+angular.module('MyLocationsApp').config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('app', {
@@ -73,20 +72,21 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-native-transiti
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.home', {
+      url: '/home',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          controller: 'HomepageCtrl',
+          templateUrl: 'templates/home.html'
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.locations', {
+      url: '/locations',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/locations.html',
+          controller: 'LocationsCtrl'
         }
       }
     })
@@ -101,5 +101,5 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-native-transiti
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/home');
 });
