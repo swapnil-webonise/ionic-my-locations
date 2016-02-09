@@ -40,15 +40,11 @@ angular.module('MyLocationsApp').controller('AppCtrl', function($scope, $ionicMo
 });
 
 angular.module('MyLocationsApp').controller('LocationsCtrl', function($scope) {
-  console.log('sdf')
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+
+  $scope.initLocations = function() {
+    $scope.locations = JSON.parse(localStorage.getItem('locations'))['locations'];
+  };
+
 });
 
 angular.module('MyLocationsApp').controller('HomepageCtrl', function($scope) {
@@ -80,13 +76,21 @@ angular.module('MyLocationsApp').controller('HomepageCtrl', function($scope) {
     ];
 
     $scope.initHomepage = function() {
+      var myLatLng = {lat: 18.5203, lng: 73.8567};
+
       map = new google.maps.Map(document.getElementById('map'), {
-                center: defaultMapLocation,
+                center: myLatLng,
                 scrollwheel: false,
                 disableDefaultUI: true,
                 zoom: 8
               });
               map.setOptions({styles: styles});
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+      });
     };
 });
 

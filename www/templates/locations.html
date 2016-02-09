@@ -1,8 +1,8 @@
-<ion-view view-title="Locations">
+<ion-view view-title="Locations" ng-init="initLocations()">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists">
-        {{playlist.title}}
+      <ion-item ng-repeat="location in locations">
+        {{ location.city }}
       </ion-item>
     </ion-list>
   </ion-content>
