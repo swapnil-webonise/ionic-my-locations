@@ -4,7 +4,6 @@ Its small mobile application using ionic which use to store locations on google 
 ### How to use
 
     1) Clone from the current repository.
-      git@github.com:swapnil-webonise/ionic-my-locations.git
 
     2) Install Ionic
       npm install -g cordova ionic
@@ -14,3 +13,11 @@ Its small mobile application using ionic which use to store locations on google 
 
     4) Run application by
       ionic serve
+
+    4) Created Build using
+      # Download android sdk and set android home
+        export ANDROID_HOME=/home/swapnil/Android/Sdk
+        export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+      # Run following command for android build
+        ionic build android
